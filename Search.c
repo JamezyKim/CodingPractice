@@ -2,72 +2,32 @@
 #include <string.h>
 #include <stdlib.h>
 
-int linearSearch(int userSize, int* userArray);
-int binarySearch(int userSize, int* userArray);
+int linearSearch(int* userArray, int target);
 
 int main() {
-    char userOption[100] = {4,7,3,1};
-    int userSize;
-    int* userArray = (int*)malloc(userSize * sizeof(int));
+	int userArray[4] = { 4,7,3,1 };
+	int target;
+	char userChoice[100];
+	int counter = 0;
+	int sizeOfArray = 4;
 
-    printf("Which search do you want to use? ");
-    scanf_s("%s", &userSearchChoice, (unsigned int)_countof(userSearchChoice));
+	printf("Please choose your target. The array is { 4,7,3,1 }: \n");
+	scanf_s("%s", userChoice, (unsigned)_countof(userChoice));
+	target = atoi(userChoice);
 
-    printf("Please tell me the size of the array: ");
-    scanf_s("%s", &userSize, (unsigned int)_countof(userSize));
+	linearSearch(userArray, target);
 
-
-    if (strcmp(userSearchChoice, "linearSearch") == 0 || strcmp(userSearchChoice, "linear search") == 0 || strcmp(userSearchChoice, "linear") == 0) {
-        linearSearch(userSize, userArray);
-    }
-    else if (strcmp(userSearchChoice, "binarySearch") == 0 || strcmp(userSearchChoice, "binary search") == 0 || strcmp(userSearchChoice, "binary") == 0) {
-        binarySearch(userSize, userArray);
-    }
-
-    return 0;
+	return 0;
 }
 
-int linearSearch() {
+int linearSearch(int* userArray,int target) {
 
-    return 0;
+	for (int i = 0; i < 4; i++) {
+		if (target == userArray[i]) {
+			printf("The index of your target is %d\n", i);
+			return i;
+		}
+	}
+
+	return 0;
 }
-
-int selectionSort(char userOption) {
-
-    return 0;
-}
-
-//int binarySearch(int userSize, int* userArray) {
-//    printf("You chose binary search.\n");
-//
-//    printf("Please tell me the array elements and the number you want to search:\n");
-//    for (int i = 0; i < userSize; i++) {
-//        scanf_s("%d", &userArray[i]);
-//    }
-//
-//    int target;
-//    int targetIndex = -1;
-//    int isFound;
-//    int lowNum = 0;
-//    int highNum = userSize - 1;
-//    int midpoint = (highNum - lowNum) / 2;
-//    int midpointOfArray = userArray[midpoint];
-//
-//    printf("Tell me the element you want to search");
-//    scanf_s("%d", &target);
-//    while (lowNum < highNum) {
-//        if (midpointOfArray == target) {
-//            targetIndex = midpoint;
-//            printf("The index of the target is %d", midpoint);
-//            break;
-//        }
-//        else if (midpointOfArray < midpoint) {
-//
-//        }
-//    }
-//
-//
-//    return 0;
-//}
-
-
