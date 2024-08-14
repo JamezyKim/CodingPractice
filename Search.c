@@ -14,8 +14,8 @@ int main() {
 	int sizeOfArray = sizeof(userArray)/sizeof(userArray[0]);
 	char userOption[2];
 
-	printf("Which one: ");
-	scanf_s("%c", userOption, (unsigned)_countof(userOption));
+	//printf("Which one do you want to use? ");
+	//scanf_s("%c", userOption, (unsigned)_countof(userOption));
 
 	//if (strcmp(userOption, "l")==0) {
 	//	printf("Please choose your target. The array is { 4,7,3,1 }: \n");
@@ -27,7 +27,10 @@ int main() {
 	//	selectionSort(userArray, sizeOfArray);
 
 	//}
-	selectionSort(userArray, sizeOfArray);
+
+	/*selectionSort(userArray, sizeOfArray);*/
+
+	binarySearch(userArray, target, sizeOfArray);
 
 	return 0;
 }
@@ -44,10 +47,36 @@ int linearSearch(int* userArray,int target, int sizeOfArray) {
 	return 0;
 }
 
+int binarySearch(int* userArray, int target, int sizeOfArray) {
+	
+	int lowNum = 0;
+	int highNum = sizeOfArray-1;
+	int midPoint = lowNum + (highNum - lowNum) / 2;
+	int resultIndex;
+	userArray[4] = { 1,3,4,7 };
+	
+	while (lowNum <= highNum) {
+		if (userArray[midPoint] == target) {
+			resultIndex = userArray;
+			printf("%d", resultIndex);
+		}
+		else if (userArray[midPoint] < target) {
+			lowNum = midPoint + 1;
+		}
+		else if (userArray[midPoint] > target) {
+			highNum = midPoint - 1;
+		}
+
+	}
+	return 0;
+
+}
+
 void selectionSort(int* userArray, int sizeOfArray) {
 
 	int temp;
 	int minIndex;
+	int sortedArray[4] = {};
 	
 	for (int i = 0; i < sizeOfArray - 1; i++) {
 		minIndex = i;
@@ -66,7 +95,8 @@ void selectionSort(int* userArray, int sizeOfArray) {
 	}
 	printf("Sorted array: ");
 	for (int i = 0; i < sizeOfArray; i++) {
-		printf("%d ", userArray[i]);
+		sortedArray[i] = userArray[i];
 	}
 	printf("\n");
 }
+
