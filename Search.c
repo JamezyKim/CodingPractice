@@ -4,6 +4,8 @@
 
 int linearSearch(int* userArray, int target, int sizeOfArray);
 void selectionSort(int* userArray, int sizeOfArray);
+int binarySearch(int* userArray, int target, int sizeOfArray);
+int insertionSort(int* userArray, int sizeOfArray);
 
 
 int main() {
@@ -53,7 +55,7 @@ int binarySearch(int* userArray, int target, int sizeOfArray) {
 	int highNum = sizeOfArray-1;
 	int midPoint = lowNum + (highNum - lowNum) / 2;
 	int resultIndex;
-	userArray[4] = { 1,3,4,7 };
+	//userArray[4] = { 1,3,4,7 };
 	
 	while (lowNum <= highNum) {
 		if (userArray[midPoint] == target) {
@@ -68,7 +70,7 @@ int binarySearch(int* userArray, int target, int sizeOfArray) {
 		}
 
 	}
-	return 0;
+	return resultIndex;
 
 }
 
@@ -100,3 +102,13 @@ void selectionSort(int* userArray, int sizeOfArray) {
 	printf("\n");
 }
 
+int insertionSort(int* userArray, int sizeOfArray) {
+	int lowNum = 0;
+	int counter = 1;
+	while (counter != -1) {
+		if (userArray[counter] < userArray[counter - 1]) {
+			userArray[counter - 1] = userArray[counter];
+		}
+	}
+	return 0;
+}
