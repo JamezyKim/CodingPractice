@@ -11,7 +11,7 @@ void printArray(int* userArray, int sizeOfArray);
 
 
 int main() {
-	int userArray[7] = { 4,7,6,10,9,3,1 };
+	int userArray[4] = { 4,7,3,1 };
 	int target = 3;
 	char userChoice[100];
 	int counter = 0;
