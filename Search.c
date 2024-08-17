@@ -26,9 +26,8 @@ void sortBySelection(int* userArray, int sizeOfArray);
 // reducing the number of comparison of the array to find the target.</summary>
 //<param name = "int* userArray">This is the int pointer that connects to the array in the main function. </param>
 //<param name = "int target">The parameter contains the target value of the user.</param>
-//<param name = "int sizeOfArray">This variable contains the size of the array.</param>
 //<return>The return value contains the index of the target the user is looking for.</return>
-int searchByBinary(int* userArray, int target, int sizeOfArray);
+int searchByBinary(int* userArray, int target, int min, int max);
 
 //<summary></summary>
 //<param name = "int* userArray">This is the int pointer that connects to the array in the main function. </param>
@@ -51,14 +50,32 @@ void printArray(int* userArray, int sizeOfArray);
 
 
 int main() {
-	int userArray[4] = { 4,7,3,1 };
+	int userArray[100];
 	int target = 3;
 	char userChoice[100];
-	int counter = 0;
-	int sizeOfArray = sizeof(userArray)/sizeof(userArray[0]);
 	char userOption[2];
-	int min = 0;
-	int max = sizeOfArray - 1;
+	int resultOfSearchByBinary = -1;
+	char userInputSizeOfArray[100];
+	char userInputTarget[100];
+	int sizeOfArray = 0;
+	int index = 0;
+
+	printf("Please tell me the size of the array: ");
+	scanf_s("%s", &userInputSizeOfArray, (unsigned int)_countof(userInputSizeOfArray));
+	sizeOfArray = atoi(userInputSizeOfArray);
+
+	index = sizeOfArray;
+	while (index > 0) {
+		printf("Please enter your number: ");
+		scanf_s("%s", &userChoice, (unsigned int)_countof(userChoice));
+		userArray[sizeOfArray-index] = atoi(userChoice);
+		index--;
+	}
+	printf("\n");
+
+	printf("Great! Now please tell me your target!: ");
+	scanf_s("%s", &userInputTarget, (unsigned int)_countof(userChoice));
+	target = atoi(userInputTarget);
 
 	printf("Thank you for choosing search by linear.");
 	printf("\nThe array is: ");
@@ -67,8 +84,16 @@ int main() {
 	searchByLinear(userArray, target, sizeOfArray);
 
 	printf("\nThank you for choosing search by binary.");
+	printf("\nThe oiriginal array is: ");
+	printArray(userArray, sizeOfArray);
+	printf("The sorted array is: ");
+	sortBySelection(userArray, sizeOfArray);
+	printArray(userArray, sizeOfArray);
+	printf("\n");
 	
-	searchByBinary(userArray, target, sizeOfArray, max, min);
+	resultOfSearchByBinary = searchByBinary(userArray, target, 0, sizeOfArray-1);
+	printf("The index of the target(%d) you are looking for is: %d", target, resultOfSearchByBinary);
+
 
 	return 0;
 }
@@ -85,30 +110,18 @@ int searchByLinear(int* userArray,int target, int sizeOfArray) {
 	return 0;
 }
 
-int searchByBinary(int* userArray, int target, int sizeOfArray) {
+int searchByBinary(int* userArray, int target, int min, int max) {
 	
-	int min = 0;
-	int max = sizeOfArray-1;
-	int midPoint = (max+min) / 2;
-	int resultIndex;
-	printf("\nThe oiriginal array is: ");
-	printArray(userArray, sizeOfArray);
-	sortBySelection(userArray, sizeOfArray);
+	int midPoint = (min+max) / 2;
 	
 	if (userArray[midPoint] == target) {
-		printf("The sorted array is: ");
-		printArray(userArray, sizeOfArray);
-		printf("\n");
-		printf("The index of the target(3) you are looking for is: %d\n",midPoint);
-		
+		return midPoint;
 	}
 	else if (userArray[midPoint] < target) {
-		min = midPoint + 1;
-		return searchByBinary(userArray, target, sizeOfArray, max, min);
+		return searchByBinary(userArray, target, midPoint+1, max);
 	}
-	else if (userArray[midPoint] > target) {
-		max = midPoint - 1;
-		return searchByBinary(userArray, target, sizeOfArray, max, min);
+	else {
+		return searchByBinary(userArray, target, min, midPoint-1);
 	}
 
 }
