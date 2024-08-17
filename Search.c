@@ -29,7 +29,8 @@ void sortBySelection(int* userArray, int sizeOfArray);
 //<return>The return value contains the index of the target the user is looking for.</return>
 int searchByBinary(int* userArray, int target, int min, int max);
 
-//<summary></summary>
+//<summary>This system repeatedly loop and compare the current element and the element before it.
+// If the previous element is bigger than the current element, they swap until the array sorts.</summary>
 //<param name = "int* userArray">This is the int pointer that connects to the array in the main function. </param>
 //<param name = "int sizeOfArray">This variable contains the size of the array.</param>
 //<return>none</return>
@@ -61,59 +62,95 @@ int main() {
 	int sizeOfArray = 0;
 	int index = 0;
 	char searchOption[100];
+	char doesUserQuit[10];
+	int isFound = -1;
+	
+	while (1) {
+		printf("Hi, welcome to Search program. \nYou would choose either the linear search and the binary search.\n");
+		printf("\nIf you want to quit, please press -1. \nOtherwise, please tell me the size of the array.");
+		printf("\nThe maximum size is 100: ");
 
-	printf("Please tell me the size of the array. \nThe maximum size is 100: ");
-	scanf_s("%s", &userInputSizeOfArray, (unsigned int)_countof(userInputSizeOfArray));
-	sizeOfArray = atoi(userInputSizeOfArray);
-	index = sizeOfArray;
+		scanf_s("%s", &userInputSizeOfArray, (unsigned int)_countof(userInputSizeOfArray));
+		sizeOfArray = atoi(userInputSizeOfArray);
+		index = sizeOfArray;
 
-	if (sizeOfArray >= 100) {
-		printf("Sorry, you have to enter a number smaller than 100\n");
-		return 0;
-	}
+		if (sizeOfArray == -1) {
+			printf("Ok, see you again. Good bye!\n");
+			return 0;
+		}
+		if (sizeOfArray >= 100) {
+			printf("Sorry, you have to enter a number smaller than 100\n");
+			return 0;
+		}
 
-	printf("\nThe size of the array is %d\n", sizeOfArray);
+		printf("\nThe size of the array is %d\n", sizeOfArray);
 
-	while (index > 0) {
-		printf("Please enter your %dst number: ", sizeOfArray-index+1);
-		scanf_s("%s", &userChoice, (unsigned int)_countof(userChoice));
-		userArray[sizeOfArray-index] = atoi(userChoice);
-		index--;
-	}
-	printf("\n");
-
-	printf("Great! Now please tell me your target!: ");
-	scanf_s("%s", &userInputTarget, (unsigned int)_countof(userChoice));
-	target = atoi(userInputTarget);
-
-	printf("Which search do you want to use?\n");
-	printf("The first option: Linear Search\n");
-	printf("The second option: Binary Search.\n"); 
-	printf("Enter 'linear' for linear search, and 'binary' for binary search: ");
-	scanf_s("%s", searchOption, (unsigned int)_countof(userChoice));
-	if (strcmp(searchOption, "linear") == 0) {
-		printf("Thank you for choosing search by linear.");
-		printf("\nThe array is: ");
-		printArray(userArray, sizeOfArray);
-		printf("\nThe index of the target(%d) you are looking for is: ", target, resultOfSearchByLinear);
-		searchByLinear(userArray, target, sizeOfArray);
-	}
-	else if (strcmp(searchOption, "binary") == 0) {
-		printf("\nThank you for choosing search by binary.");
-		printf("\nThe oiriginal array is: ");
-		printArray(userArray, sizeOfArray);
-		printf("The sorted array is: ");
-		sortBySelection(userArray, sizeOfArray);
-		printArray(userArray, sizeOfArray);
+		while (index > 0) {
+			printf("Please enter your %dst number: ", sizeOfArray - index + 1);
+			scanf_s("%s", &userChoice, (unsigned int)_countof(userChoice));
+			userArray[sizeOfArray - index] = atoi(userChoice);
+			index--;
+		}
 		printf("\n");
+
+		printf("Great! Now please tell me your target!: ");
+		scanf_s("%s", &userInputTarget, (unsigned int)_countof(userChoice));
+		target = atoi(userInputTarget);
+
+
+		for (int i = 0; i < sizeOfArray; i++) {
+			if (target == userArray[i]) {
+				isFound = 1;
+			}
+		}
+
+		if (isFound != 1) {
+			printf("\nSorry, the target you chose does not exist in the array.\n");
+			printf("Press 'y', if you want to continue the search.\n");
+			printf("Else, press any other keyboard: ");
+			scanf_s("%s", &doesUserQuit, (unsigned int)_countof(doesUserQuit));
+			if (strcmp(doesUserQuit, "y") == 0) {
+				printf("\n");
+				printf("Ok, I will bring you to the main menu.\n");
+				continue;
+			}
+			else {
+				printf("Ok, good bye!");
+				return 0;
+			}
+		}
+
+
+		printf("\nWhich search do you want to use?\n");
+		printf("The first option: Linear Search\n");
+		printf("The second option: Binary Search.\n");
+		printf("Enter 'linear' for linear search, and 'binary' for binary search: ");
+		scanf_s("%s", searchOption, (unsigned int)_countof(userChoice));
+		if (strcmp(searchOption, "linear") == 0) {
+			printf("\nThank you for choosing search by linear.");
+			printf("\nThe array is: ");
+			printArray(userArray, sizeOfArray);
+			printf("\nThe index of the target(%d) you are looking for is: ", target, resultOfSearchByLinear);
+			searchByLinear(userArray, target, sizeOfArray);
+			printf("\n\n");
+		}
+		else if (strcmp(searchOption, "binary") == 0) {
+			printf("\nThank you for choosing search by binary.");
+			printf("\nThe oiriginal array is: ");
+			printArray(userArray, sizeOfArray);
+			printf("The sorted array is: ");
+			sortByInsertion(userArray, sizeOfArray);
+			printArray(userArray, sizeOfArray);
+			printf("\n");
+			resultOfSearchByBinary = searchByBinary(userArray, target, 0, sizeOfArray - 1);
+			printf("The index of the target(%d) you are looking for is: %d \n\n", target, resultOfSearchByBinary);
+		}
+
 	}
-
-	resultOfSearchByBinary = searchByBinary(userArray, target, 0, sizeOfArray-1);
-	printf("The index of the target(%d) you are looking for is: %d \n", target, resultOfSearchByBinary);
-
-
 	return 0;
 }
+
+
 
 int searchByLinear(int* userArray,int target, int sizeOfArray) {
 
@@ -161,16 +198,14 @@ void sortBySelection(int* userArray, int sizeOfArray) {
 }
 
 void sortByInsertion(int* userArray, int sizeOfArray) {
-	int lowNum = 0;
-	int counter = 1;
-	while (counter != -1) {
-		if (userArray[counter] < userArray[counter - 1]) {
-			userArray[counter - 1] = userArray[counter];
+	for (int i = 0; i < sizeOfArray; i++) {
+		for (int j = i - 1; j > 0; j--) {
+			if (userArray[j] < userArray[j - 1]) {
+				swap(userArray, j, j - 1);
+			}
 		}
 	}
-	
 }
-
 
 void swap(int* userArray,int firstIndex,int secondIndex) {
 	int temp;
@@ -188,3 +223,4 @@ void printArray(int* userArray, int sizeOfArray) {
 	printf("\n");
 
 }
+
