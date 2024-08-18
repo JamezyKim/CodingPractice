@@ -49,6 +49,9 @@ void swap(int* userArray, int firstIndex, int secondIndex);
 //<return>none</return>
 void printArray(int* userArray, int sizeOfArray);
 
+void testSearchByLinear();
+void negativeSizeOfArray();
+void idealSearchByLinearReturnTargetIndex();
 
 int main() {
 	int userArray[100];
@@ -65,94 +68,97 @@ int main() {
 	char doesUserQuit[10];
 	int isFound = -1;
 	
-	while (1) {
-		printf("Hi, welcome to Search program. \nYou would choose either the linear search and the binary search.\n");
-		printf("\nIf you want to quit, please press -1. \nOtherwise, please tell me the size of the array.");
-		printf("\nThe maximum size is 100: ");
+	//while (1) {
+	//	printf("Hi, welcome to Search program. \nYou would choose either the linear search and the binary search.\n");
+	//	printf("\nIf you want to quit, please press -1. \nOtherwise, please tell me the size of the array.");
+	//	printf("\nThe maximum size is 100: ");
 
-		scanf_s("%s", &userInputSizeOfArray, (unsigned int)_countof(userInputSizeOfArray));
-		sizeOfArray = atoi(userInputSizeOfArray);
-		index = sizeOfArray;
+	//	scanf_s("%s", &userInputSizeOfArray, (unsigned int)_countof(userInputSizeOfArray));
+	//	sizeOfArray = atoi(userInputSizeOfArray);
+	//	index = sizeOfArray;
 
-		if (sizeOfArray == -1) {
-			printf("Ok, see you again. Good bye!\n");
-			return 0;
-		}
-		if (sizeOfArray >= 100) {
-			printf("Sorry, you have to enter a number smaller than 100\n");
-			return 0;
-		}
+	//	if (sizeOfArray == -1) {
+	//		printf("Ok, see you again. Good bye!\n");
+	//		return 0;
+	//	}
+	//	if (sizeOfArray >= 100) {
+	//		printf("Sorry, you have to enter a number smaller than 100\n");
+	//		return 0;
+	//	}
 
-		printf("\nThe size of the array is %d\n", sizeOfArray);
+	//	printf("\nThe size of the array is %d\n", sizeOfArray);
 
-		while (index > 0) {
-			printf("Please enter your %dst number: ", sizeOfArray - index + 1);
-			scanf_s("%s", &userChoice, (unsigned int)_countof(userChoice));
-			userArray[sizeOfArray - index] = atoi(userChoice);
-			index--;
-		}
-		printf("\n");
+	//	while (index > 0) {
+	//		printf("Please enter your %dst number: ", sizeOfArray - index + 1);
+	//		scanf_s("%s", &userChoice, (unsigned int)_countof(userChoice));
+	//		userArray[sizeOfArray - index] = atoi(userChoice);
+	//		index--;
+	//	}
+	//	printf("\n");
 
-		printf("Great! Now please tell me your target!: ");
-		scanf_s("%s", &userInputTarget, (unsigned int)_countof(userChoice));
-		target = atoi(userInputTarget);
-
-
-		for (int i = 0; i < sizeOfArray; i++) {
-			if (target == userArray[i]) {
-				isFound = 1;
-			}
-		}
-
-		if (isFound != 1) {
-			printf("\nSorry, the target you chose does not exist in the array.\n");
-			printf("Press 'y', if you want to continue the search.\n");
-			printf("Else, press any other keyboard: ");
-			scanf_s("%s", &doesUserQuit, (unsigned int)_countof(doesUserQuit));
-			if (strcmp(doesUserQuit, "y") == 0) {
-				printf("\n");
-				printf("Ok, I will bring you to the main menu.\n");
-				continue;
-			}
-			else {
-				printf("Ok, good bye!");
-				return 0;
-			}
-		}
+	//	printf("Great! Now please tell me your target!: ");
+	//	scanf_s("%s", &userInputTarget, (unsigned int)_countof(userChoice));
+	//	target = atoi(userInputTarget);
 
 
-		printf("\nWhich search do you want to use?\n");
-		printf("The first option: Linear Search\n");
-		printf("The second option: Binary Search.\n");
-		printf("Enter 'linear' for linear search, and 'binary' for binary search: ");
-		scanf_s("%s", searchOption, (unsigned int)_countof(userChoice));
-		if (strcmp(searchOption, "linear") == 0) {
-			printf("\nThank you for choosing search by linear.");
-			printf("\nThe array is: ");
-			printArray(userArray, sizeOfArray);
-			printf("\nThe index of the target(%d) you are looking for is: ", target, resultOfSearchByLinear);
-			searchByLinear(userArray, target, sizeOfArray);
-			printf("\n\n");
-		}
-		else if (strcmp(searchOption, "binary") == 0) {
-			printf("\nThank you for choosing search by binary.");
-			printf("\nThe oiriginal array is: ");
-			printArray(userArray, sizeOfArray);
-			printf("The sorted array is: ");
-			sortByInsertion(userArray, sizeOfArray);
-			printArray(userArray, sizeOfArray);
-			printf("\n");
-			resultOfSearchByBinary = searchByBinary(userArray, target, 0, sizeOfArray - 1);
-			printf("The index of the target(%d) you are looking for is: %d \n\n", target, resultOfSearchByBinary);
-		}
+	//	for (int i = 0; i < sizeOfArray; i++) {
+	//		if (target == userArray[i]) {
+	//			isFound = 1;
+	//		}
+	//	}
 
-	}
+	//	if (isFound != 1) {
+	//		printf("\nSorry, the target you chose does not exist in the array.\n");
+	//		printf("Press 'y', if you want to continue the search.\n");
+	//		printf("Else, press any other keyboard: ");
+	//		scanf_s("%s", &doesUserQuit, (unsigned int)_countof(doesUserQuit));
+	//		if (strcmp(doesUserQuit, "y") == 0) {
+	//			printf("\n");
+	//			printf("Ok, I will bring you to the main menu.\n\n");
+	//			continue;
+	//		}
+	//		else {
+	//			printf("Ok, good bye!");
+	//			return 0;
+	//		}
+	//	}
+
+
+	//	printf("\nWhich search do you want to use?\n");
+	//	printf("The first option: Linear Search\n");
+	//	printf("The second option: Binary Search.\n");
+	//	printf("Enter 'linear' for linear search, and 'binary' for binary search: ");
+	//	scanf_s("%s", searchOption, (unsigned int)_countof(userChoice));
+	//	if (strcmp(searchOption, "linear") == 0) {
+	//		printf("\nThank you for choosing search by linear.");
+	//		printf("\nThe array is: ");
+	//		printArray(userArray, sizeOfArray);
+	//		printf("\nThe index of the target(%d) you are looking for is: ", target, resultOfSearchByLinear);
+	//		searchByLinear(userArray, target, sizeOfArray);
+	//		printf("\n\n");
+	//	}
+	//	else if (strcmp(searchOption, "binary") == 0) {
+	//		printf("\nThank you for choosing search by binary.");
+	//		printf("\nThe oiriginal array is: ");
+	//		printArray(userArray, sizeOfArray);
+	//		printf("The sorted array is: ");
+	//		sortByInsertion(userArray, sizeOfArray);
+	//		printArray(userArray, sizeOfArray);
+	//		printf("\n");
+	//		resultOfSearchByBinary = searchByBinary(userArray, target, 0, sizeOfArray - 1);
+	//		printf("The index of the target(%d) you are looking for is: %d \n\n", target, resultOfSearchByBinary);
+	//	}
+
+	//}
+	testSearchByLinear(userArray,sizeOfArray);
 	return 0;
 }
 
-
-
 int searchByLinear(int* userArray,int target, int sizeOfArray) {
+
+	if (sizeOfArray < 0) {
+		return -1;
+	}
 
 	for (int i = 0; i < sizeOfArray; i++) {
 		if (target == userArray[i]) {
@@ -224,3 +230,71 @@ void printArray(int* userArray, int sizeOfArray) {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void testSearchByLinear() {
+	negativeSizeOfArray();
+	idealSearchByLinearReturnTargetIndex();
+	
+}
+
+void idealSearchByLinearReturnTargetIndex() {
+	//arrange
+	int sizeOfArray = 3;
+	int userArray[] = { 1,2,3 };
+	int target = 2;
+	int expectedResult = 1;
+	
+
+	//act
+	int actualResult = searchByLinear(userArray, target, sizeOfArray);
+
+	//assert
+
+	if (expectedResult == actualResult) {
+		printf("idealSearchByLinearReturnTargetIndex: pass");
+	}
+	else {
+		printf("idealSearchByLinearReturnTargetIndex: failed");
+	}
+	return;
+}
+
+void negativeSizeOfArray() {
+
+	//input
+	int sizeOfArray = -1;
+	int* userArray[] = {1,2,3};
+	int target = 2;
+
+	//expect
+	int expectedResult = -1;
+
+	//compare
+	if (expectedResult == searchByLinear(userArray, target, sizeOfArray)) {
+		printf("negativeSizeOfArray: passed");
+	}
+	else {
+		printf("negativeSizeOfArray: failed");
+	}
+
+
+	return;
+}
