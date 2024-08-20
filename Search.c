@@ -47,7 +47,7 @@ void swap(int* userArray, int firstIndex, int secondIndex);
 //<param name = "int* userArray">This is the int pointer that connects to the array in the main function. </param>
 //<param name = "int sizeOfArray">This variable contains the size of the array.</param>
 //<return>none</return>
-void printArray(int* userArray, int sizeOfArray);
+int printArray(int* userArray, int sizeOfArray);
 
 void testSearchByLinear();
 void negativeSizeOfArraySearchByLinear();
@@ -77,6 +77,12 @@ void alreadySortedByInsertion();
 void manyElementsSortByInsertion();
 void oneElementsSortByInsertion();
 
+void testPrintArray();
+void idealPrintArray();
+void noPrintArray();
+void manyPrintArray();
+void singlePrintArray();
+void duplicatedPrintArray();
 
 
 int main() {
@@ -180,6 +186,7 @@ int main() {
 	testSearchByBinary();
 	testSortBySelection();
 	testSortByInsertion();
+	testPrintArray();
 	return 0;
 }
 
@@ -271,12 +278,13 @@ void swap(int* userArray,int firstIndex,int secondIndex) {
 	return;
 }
 
-void printArray(int* userArray, int sizeOfArray) {
+int printArray(int* userArray, int sizeOfArray) {
 	for (int i = 0; i < sizeOfArray; i++) {
 		printf("%d ", userArray[i]);
 	}
 	printf("\n");
 
+	return 0;
 }
 
 
@@ -332,6 +340,122 @@ void testSortByInsertion() {
 	oneElementsSortByInsertion();
 	manyElementsSortByInsertion();
 	printf("\n\n");
+}
+
+void testPrintArray() {
+	idealPrintArray();
+	noPrintArray();
+	manyPrintArray();
+	singlePrintArray();
+	duplicatedPrintArray();
+	printf("\n\n");
+}
+
+void duplicatedPrintArray() {
+	//arrange
+	int userArray[] = { 10 };
+	int sizeOfArray = 1;
+	int expectedResult = 0;
+
+	//act
+	int actualResult = printArray(userArray, sizeOfArray);
+
+
+	//assert
+	if (expectedResult == actualResult) {
+		printf("duplicatedPrintArray: passed");
+	}
+	else {
+		printf("duplicatedPrintArray: passed");
+	}
+
+	return;
+}
+
+void singlePrintArray() {
+	//arrange
+	int userArray[] = {10};
+	int sizeOfArray = 1;
+	int expectedResult = 0;
+
+	//act
+	int actualResult = printArray(userArray, sizeOfArray);
+
+
+	//assert
+	if (expectedResult == actualResult) {
+		printf("singlePrintArray: passed");
+	}
+	else {
+		printf("singlePrintArray: passed");
+	}
+
+	return;
+}
+
+void manyPrintArray() {
+	//arrange
+	int userArray[] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
+	int sizeOfArray = 20;
+	int expectedResult = 20;
+
+	//act
+	int actualResult = printArray(userArray, sizeOfArray);
+
+
+	//assert
+	if (expectedResult == actualResult) {
+		printf("idealPrintArray: passed");
+	}
+	else {
+		printf("idealPrintArray: passed");
+	}
+
+	return;
+}
+
+void idealPrintArray() {
+	//arrange
+	int userArray[] = { 1,2,3 };
+	int sizeOfArray = 3;
+	int expectedResult = 0;
+
+
+	//act
+	int actualResult = printArray(userArray, sizeOfArray);
+
+
+	//assert
+	if (expectedResult == actualResult) {
+		printf("idealPrintArray: passed");
+	}
+	else {
+		printf("idealPrintArray: passed");
+	}
+
+	return;
+}
+
+void noPrintArray() {
+	//arrange
+	int sizeOfArray = 0;
+	int userArray[] = {0};
+	int expectedResult = 0;
+
+
+	//act
+	int actualResult = printArray(userArray, sizeOfArray);
+
+
+	//assert
+	if (expectedResult == actualResult) {
+		printf("noPrintArray: passed");
+	}
+	else {
+		printf("noPrintArray: passed");
+	}
+
+	return;
 }
 
 void manyElementsSortByInsertion() {
