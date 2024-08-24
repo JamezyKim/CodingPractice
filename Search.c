@@ -20,7 +20,7 @@ int searchByLinear(int* userArray, int target, int sizeOfArray);
 //<param name = "int* userArray">This is the int pointer that connects to the array in the main function. </param>
 //<param name = "int sizeOfArray">This variable contains the size of the array.</param>
 //<return>none</return>
-int sortBySelection(int* userArray, int sizeOfArray);
+int* sortBySelection(int* userArray, int sizeOfArray);
 
 //<summary>The system repeatedly divides the search interval in half, 
 // reducing the number of comparison of the array to find the target.</summary>
@@ -47,42 +47,42 @@ void swap(int* userArray, int firstIndex, int secondIndex);
 //<param name = "int* userArray">This is the int pointer that connects to the array in the main function. </param>
 //<param name = "int sizeOfArray">This variable contains the size of the array.</param>
 //<return>none</return>
-int printArray(int* userArray, int sizeOfArray);
+int* printArray(int* userArray, int sizeOfArray);
 
 void testSearchByLinear();
-void negativeSizeOfArraySearchByLinear();
-void idealSearchByLinearReturnTargetIndex();
-void noSizeOfArraySearchByLinear();
-void hundredSizeOfArraySearchByLinear();
-void findTheFirstIndexSearchByLinear();
+void negativeSizeOfArraySearchByLinearReturnTargetIndex();
+void validElementsArraySearchByLinearReturnTargetIndex();
+void zeroSizeOfArraySearchByLinearReturnTargetIndex();
+void hundredSizeOfArraySearchByLinearReturnTargetIndex();
+void findTheFirstIndexSearchByLinearReturnTargetIndex();
 
 void testSearchByBinary();
-void negativeSizeOfArraySearchByBinary();
-void idealSearchByBinaryReturnTargetIndex();
-void noSizeOfArraySearchByBinary();
-void hundredSizeOfArraySearchByBinary();
-void findTheFirstIndexSearchByBinary();
+void negativeSizeOfArraySearchByBinaryReturnTargetIndex();
+void validElementsArraySearchByBinaryReturnTargetIndex();
+void zeroSizeOfArraySearchByBinaryReturnTargetIndex();
+void hundredSizeOfArraySearchByBinaryReturnTargetIndex();
+void findTheFirstIndexSearchByBinaryReturnTargetIndex();
 
 void testSortBySelection();
-void idealSortBySelection();
-void noSizeOfArraySortBySelection();
-void alreadySortedBySelection();
-void duplicatedElementsSortBySelection();
-void oneElementsSortBySelection();
+//void idealSortBySelection();
+void zeroSizeOfArraySortBySelectionReturnEqualArray();
+void wellSortedElementsArraySortedBySelectionReturnEqualArray();
+//void duplicatedElementsSortBySelection();
+void oneElementsSortBySelectionReturnEqualArray();
 
 void testSortByInsertion();
-void idealSortByInsertion();
-void noSizeOfArraySortByInsertion();
-void alreadySortedByInsertion();
-void manyElementsSortByInsertion();
-void oneElementsSortByInsertion();
+//void idealSortByInsertion();
+void zeroSizeOfArraySortByInsertionReturnEqualArray();
+void wellOrderedElementsSortedByInsertionReturnEqualArray();
+//void manyElementsSortByInsertion();
+void oneElementsSortByInsertionReturnEqualArray();
 
 void testPrintArray();
-void idealPrintArray();
-void noPrintArray();
-void manyPrintArray();
-void singlePrintArray();
-void duplicatedPrintArray();
+//void idealPrintArray();
+//void noPrintArray();
+//void twentyUserArrayElementsPrintArrayReturnUserArray();
+void singleArrayElementPrintArrayReturnUserArray();
+//void duplicatedPrintArray();
 
 
 int main() {
@@ -234,9 +234,9 @@ int searchByBinary(int* userArray, int target, int min, int max) {
 
 }
 
-int sortBySelection(int* userArray, int sizeOfArray) {
+int* sortBySelection(int* userArray, int sizeOfArray) {
 
-	if (sizeOfArray <= 0) {
+	if (sizeOfArray <= 1) {
 		return -1;
 	}
 	int minIndex = 0;
@@ -252,14 +252,15 @@ int sortBySelection(int* userArray, int sizeOfArray) {
 		}
 		swap(userArray, minIndex, i);
 	}
-	return 0;
+	return userArray;
 }
 
 int sortByInsertion(int* userArray, int sizeOfArray) {
 
-	if (sizeOfArray <= 0) {
+	if (sizeOfArray <= 1) {
 		return -1;
 	}
+
 
 	for (int i = 0; i < sizeOfArray; i++) {
 		for (int j = i - 1; j > 0; j--) {
@@ -280,13 +281,13 @@ void swap(int* userArray,int firstIndex,int secondIndex) {
 	return;
 }
 
-int printArray(int* userArray, int sizeOfArray) {
+int* printArray(int* userArray, int sizeOfArray) {
 	for (int i = 0; i < sizeOfArray; i++) {
 		printf("%d ", userArray[i]);
 	}
 	printf("\n");
 
-	return 0;
+	return userArray;
 }
 
 
@@ -309,139 +310,143 @@ int printArray(int* userArray, int sizeOfArray) {
 
 
 void testSearchByLinear() {
-	idealSearchByLinearReturnTargetIndex();
-	negativeSizeOfArraySearchByLinear();
-	noSizeOfArraySearchByLinear();
-	hundredSizeOfArraySearchByLinear();
-	findTheFirstIndexSearchByLinear();
+	validElementsArraySearchByLinearReturnTargetIndex();
+	negativeSizeOfArraySearchByLinearReturnTargetIndex();
+	zeroSizeOfArraySearchByLinearReturnTargetIndex();
+	hundredSizeOfArraySearchByLinearReturnTargetIndex();
+	findTheFirstIndexSearchByLinearReturnTargetIndex();
 	printf("\n\n");
 }
 
 void testSearchByBinary() {
-	idealSearchByBinaryReturnTargetIndex();
-	negativeSizeOfArraySearchByBinary();
-	noSizeOfArraySearchByBinary();
-	hundredSizeOfArraySearchByBinary();
-	findTheFirstIndexSearchByBinary();
+	validElementsArraySearchByBinaryReturnTargetIndex();
+	negativeSizeOfArraySearchByBinaryReturnTargetIndex();
+	zeroSizeOfArraySearchByBinaryReturnTargetIndex();
+	hundredSizeOfArraySearchByBinaryReturnTargetIndex();
+	findTheFirstIndexSearchByBinaryReturnTargetIndex();
 	printf("\n\n");
 }
 
 void testSortBySelection() {
-	idealSortBySelection();
-	noSizeOfArraySortBySelection();
-	alreadySortedBySelection();
-	duplicatedElementsSortBySelection();
-	oneElementsSortBySelection();
+	//idealSortBySelection();
+	zeroSizeOfArraySortBySelectionReturnEqualArray();
+	wellSortedElementsArraySortedBySelectionReturnEqualArray();
+	//duplicatedElementsSortBySelection();
+	oneElementsSortBySelectionReturnEqualArray();
 	printf("\n\n");
 }
 
 void testSortByInsertion() {
-	idealSortByInsertion();
-	noSizeOfArraySortByInsertion();
-	alreadySortedByInsertion();
-	oneElementsSortByInsertion();
-	manyElementsSortByInsertion();
+	//idealSortByInsertion();
+	zeroSizeOfArraySortByInsertionReturnEqualArray();
+	wellOrderedElementsSortedByInsertionReturnEqualArray();
+	oneElementsSortByInsertionReturnEqualArray();
+	//manyElementsSortByInsertion();
 	printf("\n\n");
 }
 
 void testPrintArray() {
-	idealPrintArray();
-	noPrintArray();
-	manyPrintArray();
-	singlePrintArray();
-	duplicatedPrintArray();
+	//idealPrintArray();
+	//noPrintArray();
+	//twelveUserArrayElementsPrintArrayReturnUserArray();
+	singleArrayElementPrintArrayReturnUserArray();
+	//duplicatedPrintArray();
 	printf("\n\n");
 }
 
-void duplicatedPrintArray() {
+void validElementsArraySearchByBinaryReturnTargetIndex() {
 	//arrange
-	int userArray[] = { 10 };
-	int sizeOfArray = 1;
-	int expectedResult = 0;
+	int sizeOfArray = 3;
+	int userArray[] = { 1,2,3 };
+	int target = 2;
+	int expectedResult = 1;
+	int min = 0;
+	int max = sizeOfArray - 1;
+
 
 	//act
-	int actualResult = printArray(userArray, sizeOfArray);
-
+	int actualResult = searchByBinary(userArray, target, min, max);
 
 	//assert
+
 	if (expectedResult == actualResult) {
-		printf("duplicatedPrintArray: passed");
+		printf("validElementsArraySearchByBinaryReturnTargetIndex: pass\n");
 	}
 	else {
-		printf("duplicatedPrintArray: passed");
+		printf("validElementsArraySearchByBinaryReturnTargetIndex: failed\n");
 	}
-
 	return;
 }
 
-void singlePrintArray() {
+void singleArrayElementPrintArrayReturnUserArray() {
 	//arrange
 	int userArray[] = {10};
 	int sizeOfArray = 1;
-	int expectedResult = 0;
+	int* expectedResult = userArray;
 
 	//act
-	int actualResult = printArray(userArray, sizeOfArray);
+	int* actualResult = printArray(userArray, sizeOfArray);
 
 
 	//assert
 	if (expectedResult == actualResult) {
-		printf("singlePrintArray: passed");
+		printf("singleArrayElementPrintArrayReturnUserArray: passed");
 	}
 	else {
-		printf("singlePrintArray: passed");
+		printf("singleArrayElementPrintArrayReturnUserArray: failed");
 	}
 
 	return;
 }
 
-void manyPrintArray() {
+void validElementPrintArrayReturnUserArray() {
 	//arrange
 	int userArray[] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
 	int sizeOfArray = 20;
-	int expectedResult = 20;
 
 	//act
-	int actualResult = printArray(userArray, sizeOfArray);
+	int* actualResult = printArray(userArray, sizeOfArray);
 
 
 	//assert
-	if (expectedResult == actualResult) {
-		printf("idealPrintArray: passed");
-	}
-	else {
-		printf("idealPrintArray: passed");
-	}
 
-	return;
+	for (int i = 0; i < sizeOfArray; i++) {
+		if (userArray[i] != actualResult[i]) {
+			printf("twelveUserArrayElementsPrintArrayReturnUserArray: failed");
+			return;
+		}
+	}
+	printf("twelveUserArrayElementsPrintArrayReturnUserArray: passed");
+
+	return userArray;
 }
 
-void idealPrintArray() {
-	//arrange
-	int userArray[] = { 1,2,3 };
-	int sizeOfArray = 3;
-	int expectedResult = 0;
+//void idealPrintArray() {
+//	//arrange
+//	int userArray[] = { 1,2,3 };
+//	int sizeOfArray = 3;
+//	int expectedResult = 0;
+//
+//
+//	//act
+//	int actualResult = printArray(userArray, sizeOfArray);
+//
+//
+//	//assert
+//	if (expectedResult == actualResult) {
+//		printf("idealPrintArray: passed");
+//	}
+//	else {
+//		printf("idealPrintArray: passed");
+//	}
+//
+//	return;
+//}
 
-
-	//act
-	int actualResult = printArray(userArray, sizeOfArray);
-
-
-	//assert
-	if (expectedResult == actualResult) {
-		printf("idealPrintArray: passed");
-	}
-	else {
-		printf("idealPrintArray: passed");
-	}
-
-	return;
-}
-
-void noPrintArray() {
+void noSizeOfArrayPrintArrayReturnEqualArray() {
 	//arrange
 	int sizeOfArray = 0;
-	int userArray[] = {0};
+	int* userArray = NULL;
 	int expectedResult = 0;
 
 
@@ -454,13 +459,13 @@ void noPrintArray() {
 		printf("noPrintArray: passed");
 	}
 	else {
-		printf("noPrintArray: passed");
+		printf("noPrintArray: failed");
 	}
 
 	return;
 }
 
-void manyElementsSortByInsertion() {
+void twentySizeOfArrayElementsSortByInsertionReturnEqualArray() {
 	//arrange
 	int sizeOfArray = 20;
 	int userArray[] = { 2,19,18,11,7,17,9,4,20,6,14,12,1,13,8,5,3,15,16,10 };
@@ -468,56 +473,48 @@ void manyElementsSortByInsertion() {
 
 	//act
 	int isPassed = 1;
-	int actualResult = sortBySelection(userArray, sizeOfArray);
+	int* actualResult = sortBySelection(userArray, sizeOfArray);
 
 	for (int i = 0; i < sizeOfArray; i++) {
 		if (userArray[i] != expectedResult[i]) {
 			isPassed = 0;
-			printf("manyElementsSortByInsertion: failed\n");
+			printf("twentySizeOfArrayElementsSortByInsertionReturnUserArray: failed\n");
 		}
 	}
 
 	//assert
 	if (isPassed) {
-		printf("manyElementsSortByInsertion: passed\n");
+		printf("twentySizeOfArrayElementsSortByInsertionReturnUserArray: passed\n");
 	}
 
 	else {
-		printf("idealSortByInsertionReturnTargetIndex: failed\n");
+		printf("twentySizeOfArrayElementsSortByInsertionReturnUserArray: failed\n");
 	}
 	return;
 }
 
-void oneElementsSortByInsertion() {
+void oneElementsSortByInsertionReturnEqualArray() {
 	//arrange
 	int sizeOfArray = 1;
-	long long userArray[] = { 1 };
-	long long expectedResult[] = { 1 };
+	int userArray[] = { 1 };
+	int expectedResult = -1;
 
 	//act
 	int isPassed = 1;
-	int actualResult = sortByInsertion(userArray, sizeOfArray);
+	int* actualResult = sortByInsertion(userArray, sizeOfArray);
 
-	for (int i = 0; i < sizeOfArray; i++) {
-		if (userArray[i] != expectedResult[i]) {
 
-			isPassed = 0;
-			printf("oneElementsSortByInsertion: failed\n");
-		}
-	}
+
 
 	//assert
-	if (isPassed) {
+	if (actualResult == expectedResult) {
 		printf("oneElementsSortByInsertion: passed\n");
 	}
 
-	else {
-		printf("oneElementsSortByInsertion: failed\n");
-	}
 	return;
 }
 
-void duplicatedElementsSortBySelection() {
+void duplicatedElementsSortBySelectionReturnEqualArray() {
 	//arrange
 	int sizeOfArray = 4;
 	int userArray[] = { 2,1,3,1 };
@@ -525,12 +522,13 @@ void duplicatedElementsSortBySelection() {
 
 	//act
 	int isPassed = 1;
-	int actualResult = sortBySelection(userArray, sizeOfArray);
+	int* actualResult = sortBySelection(userArray, sizeOfArray);
 
 	for (int i = 0; i < sizeOfArray; i++) {
 		if (userArray[i] != expectedResult[i]) {
 			isPassed = 0;
 			printf("duplicatedElementsSortBySelection: failed\n");
+			return;
 		}
 	}
 
@@ -539,13 +537,10 @@ void duplicatedElementsSortBySelection() {
 		printf("duplicatedElementsSortBySelection: passed\n");
 	}
 
-	else {
-		printf("duplicatedElementsSortBySelection: failed\n");
-	}
 	return;
 }
 
-void alreadySortedByInsertion() {
+void wellOrderedElementsSortedByInsertionReturnEqualArray() {
 	//arrange
 	int sizeOfArray = 3;
 	int userArray[] = { 1,2,3 };
@@ -553,62 +548,59 @@ void alreadySortedByInsertion() {
 
 	//act
 	int isPassed = 1;
-	int actualResult = sortByInsertion(userArray, sizeOfArray);
+	sortByInsertion(userArray, sizeOfArray);
 
 	for (int i = 0; i < sizeOfArray; i++) {
 		if (userArray[i] != expectedResult[i]) {
 			isPassed = 0;
-			printf("alreadySortedByInsertion: failed");
+			printf("wellOrderedElementsSortedByInsertionReturnReturnEqualArray: failed");
+			return;
 		}
 	}
 
 	//assert
 	if (isPassed) {
-		printf("alreadySortedByInsertion: passed\n");
+		printf("wellOrderedElementsSortedByInsertionReturnReturnEqualArray: passed\n");
 	}
 
-	else {
-		printf("alreadySortedByInsertion: failed\n");
-	}
 	return;
 }
 
 
 
 
-void idealSortByInsertion() {
-	//arrange
-	int sizeOfArray = 3;
-	int userArray[] = { 2,1,3 };
-	int expectedResult[] = { 1, 2, 3 };
+//void idealSortByInsertion() {
+//	//arrange
+//	int sizeOfArray = 3;
+//	int userArray[] = { 2,1,3 };
+//	int expectedResult[] = { 1, 2, 3 };
+//
+//	//act
+//	int isPassed = 1;
+//	int actualResult = sortBySelection(userArray, sizeOfArray);
+//
+//	for (int i = 0; i < sizeOfArray; i++) {
+//		if (userArray[i] != expectedResult[i]) {
+//			isPassed = 0;
+//			printf("idealSortByInsertionReturnTargetIndex: failed\n");
+//		}
+//	}
+//
+//	//assert
+//	if (isPassed) {
+//		printf("idealSortByInsertionReturnTargetIndex: passed\n");
+//	}
+//
+//	else {
+//		printf("idealSortByInsertionReturnTargetIndex: failed\n");
+//	}
+//	return;
+//}
 
-	//act
-	int isPassed = 1;
-	int actualResult = sortBySelection(userArray, sizeOfArray);
-
-	for (int i = 0; i < sizeOfArray; i++) {
-		if (userArray[i] != expectedResult[i]) {
-			isPassed = 0;
-			printf("idealSortByInsertionReturnTargetIndex: failed\n");
-		}
-	}
-
-	//assert
-	if (isPassed) {
-		printf("idealSortByInsertionReturnTargetIndex: passed\n");
-	}
-
-	else {
-		printf("idealSortByInsertionReturnTargetIndex: failed\n");
-	}
-	return;
-}
-
-void noSizeOfArraySortByInsertion() {
+void zeroSizeOfArraySortByInsertionReturnEqualArray() {
 	//arrange
 	int sizeOfArray = 0;
-	int userArray[] = { 2,1,3 };
-	int sortedArray[] = { 1,2,3 };
+	int* userArray = NULL;
 	int expectedResult = -1;
 
 	//act
@@ -626,58 +618,58 @@ void noSizeOfArraySortByInsertion() {
 	return;
 }
 
-void idealSortBySelection() {
-	//arrange
-	int sizeOfArray = 3;
-	int userArray[] = { 2,1,3 };
-	int expectedResult[] = {1, 2, 3};
+//void idealSortBySelectionReturnEqualArray() {
+//	//arrange
+//	int sizeOfArray = 3;
+//	int userArray[] = { 2,1,3 };
+//	int expectedResult[] = {1, 2, 3};
+//
+//	//act
+//	int isPassed = 1;
+//	int actualResult = sortBySelection(userArray, sizeOfArray);
+//
+//	for (int i = 0; i < sizeOfArray; i++) {
+//		if (userArray[i] != expectedResult[i]) {
+//			isPassed = 0;
+//			printf("idealSortBySelectionReturnTargetIndex: failed");
+//		}
+//	}
+//
+//	//assert
+//	if (isPassed) {
+//		printf("idealSortBySelectionReturnTargetIndex: passed\n");
+//	}
+//
+//	else {
+//		printf("idealSortBySelectionReturnTargetIndex: failed\n");
+//	}
+//	return;
+//}
 
-	//act
-	int isPassed = 1;
-	int actualResult = sortBySelection(userArray, sizeOfArray);
-
-	for (int i = 0; i < sizeOfArray; i++) {
-		if (userArray[i] != expectedResult[i]) {
-			isPassed = 0;
-			printf("idealSortBySelectionReturnTargetIndex: failed");
-		}
-	}
-
-	//assert
-	if (isPassed) {
-		printf("idealSortBySelectionReturnTargetIndex: passed\n");
-	}
-
-	else {
-		printf("idealSortBySelectionReturnTargetIndex: failed\n");
-	}
-	return;
-}
-
-void noSizeOfArraySortBySelection() {
+void zeroSizeOfArraySortBySelectionReturnEqualArray() {
 	//arrange
 	int sizeOfArray = 0;
-	int userArray[] = { 2,1,3 };
-	int sortedArray[] = {1,2,3};
+	int* userArray = NULL;
 	int expectedResult = -1;
 
 	//act
-	int actualResult = sortBySelection(userArray, sizeOfArray);
+	int* actualResult = sortBySelection(userArray, sizeOfArray);
 
 
 	//assert
 	if (actualResult == expectedResult) {
-		printf("noSizeOfArraySortBySelection: passed\n");
+		printf("zeroSizeOfArraySortBySelectionReturnEqualArray: passed\n");
 	}
 
 	else {
-		printf("noSizeOfArraySortBySelection: failed\n");
+		printf("zeroSizeOfArraySortBySelectionReturnEqualArray: failed\n");
+		return;
 	}
 	return;
 }
 
 
-void oneElementsSortBySelection() {
+void oneElementsSortBySelectionReturnEqualArray() {
 	//arrange
 	int sizeOfArray = 1;
 	int userArray[] = { 1 };
@@ -708,7 +700,7 @@ void oneElementsSortBySelection() {
 
 
 
-void alreadySortedBySelection() {
+void wellSortedElementsArraySortedBySelectionReturnEqualArray() {
 	//arrange
 	int sizeOfArray = 3;
 	int userArray[] = { 1,2,3 };
@@ -737,7 +729,7 @@ void alreadySortedBySelection() {
 }
 
 
-void idealSearchByLinearReturnTargetIndex() {
+void validElementsArraySearchByLinearReturnTargetIndex() {
 	//arrange
 	int sizeOfArray = 3;
 	int userArray[] = { 1,2,3 };
@@ -759,7 +751,7 @@ void idealSearchByLinearReturnTargetIndex() {
 	return;
 }
 
-void negativeSizeOfArraySearchByLinear() {
+void negativeSizeOfArraySearchByLinearReturnTargetIndex() {
 
 	//arrange
 	int sizeOfArray = -1;
@@ -771,17 +763,17 @@ void negativeSizeOfArraySearchByLinear() {
 
 	//assert
 	if (expectedResult == searchByLinear(userArray, target, sizeOfArray)) {
-		printf("negativeSizeOfArraySearchByLinear: passed\n");
+		printf("negativeSizeOfArraySearchByLinearReturnTargetIndex: passed\n");
 	}
 	else {
-		printf("negativeSizeOfArraySearchByLinear: failed\n");
+		printf("negativeSizeOfArraySearchByLinearReturnTargetIndex: failed\n");
 	}
 
 
 	return;
 }
 
-void noSizeOfArraySearchByLinear() {
+void zeroSizeOfArraySearchByLinearReturnTargetIndex() {
 	//arranage
 	int sizeOfArray = 0;
 	int* userArray = NULL;
@@ -792,20 +784,20 @@ void noSizeOfArraySearchByLinear() {
 
 	//assert
 	if (expectedResult == searchByLinear(userArray, target, sizeOfArray)) {
-		printf("noSizeOfArraySearchByLinear: passed\n");
+		printf("zeroSizeOfArraySearchByLinearReturnTargetIndex: passed\n");
 	}
 	else {
-		printf("noSizeOfArraySearchByLinear: failed\n");
+		printf("zeroSizeOfArraySearchByLinearReturnTargetIndex: failed\n");
 	}
 
 
 	return;
 }
 
-void hundredSizeOfArraySearchByLinear() {
+void hundredSizeOfArraySearchByLinearReturnTargetIndex() {
 	//arranage
 	int sizeOfArray = 100;
-	int* userArray[100] = {3};
+	int userArray[100] = {3};
 	int target = 3;
 
 	//act
@@ -813,67 +805,67 @@ void hundredSizeOfArraySearchByLinear() {
 
 	//assert
 	if (expectedResult == searchByLinear(userArray, target, sizeOfArray)) {
-		printf("hundredSizeOfArraySearchByLinear: passed\n");
+		printf("hundredSizeOfArraySearchByLinearReturnTargetIndex: passed\n");
 	}
 	else {
-		printf("hundredSizeOfArraySearchByLinear: failed\n");
+		printf("hundredSizeOfArraySearchByLinearReturnTargetIndex: failed\n");
 	}
 
 
 	return;
 }
 
-void findTheFirstIndexSearchByLinear() {
+void findTheFirstIndexSearchByLinearReturnTargetIndex() {
 	//arranage
 	int sizeOfArray = 4;
-	int* userArray[100] = { 0,4,7,1 };
+	int userArray[100] = { 0,4,7,1 };
 	int target = 0;
-
+	int actualResult = searchByLinear(userArray, target, sizeOfArray);
 
 	//act
 	int expectedResult = 0;
 
 	//assert
-	if (expectedResult == searchByLinear(userArray, target, sizeOfArray)) {
-		printf("findTheFirstIndexSearchByLinear: passed\n");
-	}
-	else {
-		printf("findTheFirstIndexSearchByLinear: failed\n");
-	}
-
-
-	return;
-}
-
-
-
-
-
-void idealSearchByBinaryReturnTargetIndex() {
-	//arrange
-	int sizeOfArray = 3;
-	int userArray[3] = { 1,2,3 };
-	int target = 2;
-	int expectedResult = 1;
-	int min = 0;
-	int max = sizeOfArray - 1;
-
-
-	//act
-	int actualResult = searchByBinary(userArray, target, min, max);
-
-	//assert
-
 	if (expectedResult == actualResult) {
-		printf("idealSearchByBinaryReturnTargetIndex: pass\n");
+		printf("findTheFirstIndexSearchByLinearReturnTargetIndex: passed\n");
 	}
 	else {
-		printf("idealSearchByBinaryReturnTargetIndex: failed\n");
+		printf("findTheFirstIndexSearchByLinearReturnTargetIndex: failed\n");
 	}
+
+
 	return;
 }
 
-void negativeSizeOfArraySearchByBinary() {
+
+
+
+
+//void idealSearchByBinaryReturnTargetIndex() {
+//	//arrange
+//	int sizeOfArray = 3;
+//	int userArray[3] = { 1,2,3 };
+//	int target = 2;
+//	int expectedResult = 1;
+//	int min = 0;
+//	int max = sizeOfArray - 1;
+//
+//
+//	//act
+//	int actualResult = searchByBinary(userArray, target, min, max);
+//
+//	//assert
+//
+//	if (expectedResult == actualResult) {
+//		printf("idealSearchByBinaryReturnTargetIndex: pass\n");
+//	}
+//	else {
+//		printf("idealSearchByBinaryReturnTargetIndex: failed\n");
+//	}
+//	return;
+//}
+
+void negativeSizeOfArraySearchByBinaryReturnTargetIndex() {
 
 	//arrange
 	int sizeOfArray = -1;
@@ -881,26 +873,26 @@ void negativeSizeOfArraySearchByBinary() {
 	int target = 2;
 	int min = 0;
 	int max = sizeOfArray - 1;
-
+	int actualResult = searchByBinary(userArray, target, min, max);
 	//act
 	int expectedResult = -1;
 
 	//assert
-	if (expectedResult == searchByBinary(userArray, target, min, max)) {
-		printf("negativeSizeOfArraySearchByBinary: passed\n");
+	if (expectedResult == actualResult) {
+		printf("negativeSizeOfArraySearchByBinaryReturnTargetIndex: passed\n");
 	}
 	else {
-		printf("negativeSizeOfArraySearchByBinary: failed\n");
+		printf("negativeSizeOfArraySearchByBinaryReturnTargetIndex: failed\n");
 	}
 
 
 	return;
 }
 
-void noSizeOfArraySearchByBinary() {
+void zeroSizeOfArraySearchByBinaryReturnTargetIndex() {
 	//arranage
 	int sizeOfArray = 0;
-	int userArray = NULL;
+	int* userArray = NULL;
 	int target = 0;
 	int min = 0;
 	int max = sizeOfArray - 1;
@@ -910,56 +902,58 @@ void noSizeOfArraySearchByBinary() {
 
 	//assert
 	if (expectedResult == searchByBinary(userArray, target, min, max)) {
-		printf("noSizeOfArraySearchByBinary: passed\n");
+		printf("zeroSizeOfArraySearchByBinaryReturnTargetIndex: passed\n");
 	}
 	else {
-		printf("noSizeOfArraySearchByBinary: failed\n");
+		printf("zeroSizeOfArraySearchByBinaryReturnTargetIndex: failed\n");
 	}
 
 
 	return;
 }
 
-void hundredSizeOfArraySearchByBinary() {
+void hundredSizeOfArraySearchByBinaryReturnTargetIndex() {
 	//arranage
 	int sizeOfArray = 100;
 	int userArray[100] = { 3 };
 	int target = 3;
 	int min = 0;
 	int max = sizeOfArray - 1;
+	int actualResult = searchByBinary(userArray, target, min, max);
 
 	//act
 	int expectedResult = -1;
 
 	//assert
-	if (expectedResult == searchByBinary(userArray, target, min, max)) {
-		printf("hundredSizeOfArraySearchByBinary: passed\n");
+	if (expectedResult == actualResult) {
+		printf("hundredSizeOfArraySearchByBinaryReturnTargetIndex: passed\n");
 	}
 	else {
-		printf("hundredSizeOfArraySearchByBinary: failed\n");
+		printf("hundredSizeOfArraySearchByBinaryReturnTargetIndex: failed\n");
 	}
 
 
 	return;
 }
 
-void findTheFirstIndexSearchByBinary() {
+void findTheFirstIndexSearchByBinaryReturnTargetIndex() {
 	//arranage
 	int sizeOfArray = 4;
 	int userArray[4] = { 0,4,7,1 };
 	int target = 0;
 	int min = 0;
 	int max = sizeOfArray - 1;
+	int actualResult = searchByBinary(userArray, target, min, max);
 
 	//act
 	int expectedResult = 0;
 
 	//assert
-	if (expectedResult == searchByBinary(userArray, target, min, max)) {
-		printf("findTheFirstIndexSearchByBinary: passed\n");
+	if (expectedResult == actualResult) {
+		printf("findTheFirstIndexSearchByBinaryReturnTargetIndex: passed\n");
 	}
 	else {
-		printf("findTheFirstIndexSearchByBinary: failed\n");
+		printf("findTheFirstIndexSearchByBinaryReturnTargetIndex: failed\n");
 	}
 
 
